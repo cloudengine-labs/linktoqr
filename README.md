@@ -1,4 +1,7 @@
 # Convert URL link to QR Code
+
+[![Go Build](https://github.com/chefgs/linktoqr/actions/workflows/go_ci.yml/badge.svg)](https://github.com/chefgs/linktoqr/actions/workflows/go_ci.yml)
+
 ## Purpose
 Code in this repo will help to generate QR from the given URL.
 
