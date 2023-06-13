@@ -30,6 +30,7 @@ const templateStr = `
 <title>Link to QR Generator</title>
 </head>
 <body>
+<h2>Convert URL to QR</h2>
 {{if .}}
 <img src="http://chart.apis.google.com/chart?chs=300x300&cht=qr&choe=UTF-8&chl={{.}}" />
 <br>
