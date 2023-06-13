@@ -31,3 +31,5 @@ cd ~/go/bin
 
 - You can save this image as `.png` file and use it where ever you want.
 
+## Reference
+This repo code has been inspired from the example in [Effective Go](https://go.dev/doc/effective_go#web_server) Docs page.
