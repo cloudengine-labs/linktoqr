@@ -36,3 +36,7 @@ cd ~/go/bin
 
 ## Reference
 This repo code has been inspired from the example in [Effective Go](https://go.dev/doc/effective_go#web_server) Docs page.
+
+
+## ToDo
+- Contenerisation and Tests needs to be added
