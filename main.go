@@ -21,7 +21,12 @@ func main() {
 }
 
 func QR(w http.ResponseWriter, req *http.Request) {
-	templ.Execute(w, req.FormValue("url"))
+	err := templ.Execute(w, req.FormValue("url"))
+	if err != nil {
+		// Handle the error if any and return
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
 
 const templateStr = `
