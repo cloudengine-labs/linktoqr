@@ -39,7 +39,7 @@ jobs:
     - name: Docker Build and Push
       uses: docker/build-push-action@v4.1.1
       with:
-#        push: true
+        push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/linktoqr:latest
 
 # TODO: Tests 
