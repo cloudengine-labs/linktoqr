@@ -24,8 +24,6 @@ jobs:
 
     - name: Golang CI code Lint
       uses: golangci/golangci-lint-action@v3
-      with:
-        working-directory: ./
       
     - name: Run Go Build
       run: go build -v ./...
