@@ -10,9 +10,9 @@ WORKDIR /root/go/src/linktoqr
 
 COPY . .
 
-RUN go install -v ./...
+RUN go build -o linktoqr 
 
 # Export necessary port
 EXPOSE 1718
 
-CMD ["linktoqr"]
+CMD ["./linktoqr"]
