@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -12,6 +13,8 @@ var addr = flag.String("addr", ":1718", "http service address") // Q=17, R=18
 var templ = template.Must(template.New("qr").Parse(templateStr))
 
 func main() {
+	fmt.Println("\nURL to QR Converter Running.. Now access http://localhost:1718/")
+
 	flag.Parse()
 	http.Handle("/", http.HandlerFunc(QR))
 	err := http.ListenAndServe(*addr, nil)
@@ -21,7 +24,13 @@ func main() {
 }
 
 func QR(w http.ResponseWriter, req *http.Request) {
-	templ.Execute(w, req.FormValue("url"))
+	fmt.Println("\nQR Converter Accessed.. ")
+	err := templ.Execute(w, req.FormValue("url"))
+	if err != nil {
+		// Handle the error if any and return
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
 
 const templateStr = `

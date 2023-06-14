@@ -2,16 +2,23 @@
 
 [![Go Build](https://github.com/chefgs/linktoqr/actions/workflows/go_ci.yml/badge.svg)](https://github.com/chefgs/linktoqr/actions/workflows/go_ci.yml)
 
+## ToDo
+- [x] Contenerisation using Dockerfile
+- [x] GitHub workflow for CI
+- [ ] GitHub workflow for CD to deploy in Cloud
+- [ ] Unit Tests
+
 ## Purpose
 Code in this repo will help to generate QR from the given URL.
 
-## Install the executable
+## Installation methods
+### Method 1: Install from the github path
 - Run the command below to install the executable
 ```
 mkdir -p ~/go/bin && go install github.com/chefgs/linktoqr@latest
 ```
 
-## How to run the executable
+### How to run the executable
 - The executable will be stored in `~/go/bin` path
 - Go to `~/go/bin` path to execute the Go executable file or add the `~/go/bin` directory to PATH environment variable, so the executable can be accessed anywhere from terminal path or command prompt
 - Run the below commands
@@ -19,6 +26,14 @@ mkdir -p ~/go/bin && go install github.com/chefgs/linktoqr@latest
 cd ~/go/bin
 ./linktoqr
 ```
+
+### Method 2: Docker image execution
+- The executable has been built inside a Docker image and is available to pull from Docker hub registry `gsdockit/linktoqr:latest`
+- Run the below command to run the QR converter using docker
+```
+docker run -d -p 1718:1718 gsdockit/linktoqr
+```
+- Rest of the steps for accessing the QR via browser is same, and can be accessed via `http://localhost:1718`
 
 ## Access to QR generator portal
 - Once we execute the code, it will run the portal in `localhost` port `1718`
@@ -37,6 +52,3 @@ cd ~/go/bin
 ## Reference
 This repo code has been inspired from the example in [Effective Go](https://go.dev/doc/effective_go#web_server) Docs page.
 
-
-## ToDo
-- Contenerisation and Tests needs to be added
