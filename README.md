@@ -1,6 +1,6 @@
 # Convert URL link to QR Code
 
-[![Go Build](https://github.com/chefgs/linktoqr/actions/workflows/go_ci.yml/badge.svg)](https://github.com/chefgs/linktoqr/actions/workflows/go_ci.yml)
+[![Go Build](https://github.com/chefgs/linktoqr/actions/workflows/go_cicd.yml/badge.svg)](https://github.com/chefgs/linktoqr/actions/workflows/go_cicd.yml)
 
 ## ToDo
 - [x] Contenerisation using Dockerfile
