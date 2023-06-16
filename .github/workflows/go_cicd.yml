@@ -55,5 +55,4 @@ jobs:
 
   go_cd_job:
     name: Go CD Job
-    uses: chefgs/terraform_repo/.github/workflows/tf_code_validation_aws.yml@main
-    
+    uses: ./.github/workflows/tf_create_aws_infra.yml
