@@ -68,18 +68,15 @@ jobs:
     - name: Checkout tf code in runner environment
       uses: actions/checkout@v3.5.2
 
+    # Configure Terraform cloud API token, since we are using Remote backend option of Terraform cloud in AWS code
     - name: Setup Terraform CLI
       uses: hashicorp/setup-terraform@v2.0.2
       with:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-    - name: Configure AWS Credentials Action For GitHub Actions
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-west-2
+    # Add the AWS Creds as ENV variable in TF Cloud workspace, since the tf run happens in TF Cloud environment
 
+    # Call rest of the Terraform commands
     - name: Terraform init and validate
       run: |
         echo `pwd`
