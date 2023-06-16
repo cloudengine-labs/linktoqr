@@ -53,9 +53,23 @@ jobs:
 
 # TODO: Tests 
 
-  go_cd_job:
-    name: Go CD Job
-    uses: ./.github/workflows/tf_create_aws_infra.yml
-    with:
-      tfpath: create_infra/ec2
+  # go_cd_job:
+  #   name: Go CD Job
+  #   uses: ./.github/workflows/tf_create_aws_infra.yml
+  #   with:
+  #     tfpath: create_infra/ec2
 
+  tf_create_infra_job:
+    name: Terraform Validation and Build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout tf code in runner environment
+      uses: actions/checkout@v3.5.2
+
+    - name: Configure AWS Credentials Action For GitHub Actions
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-west-2
