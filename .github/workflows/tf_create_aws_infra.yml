@@ -14,7 +14,6 @@ jobs:
     name: Terraform Validation and Build
     runs-on: ubuntu-latest
 
-    if:  ${{ inputs.tfpath }} 
     steps:
     - name: Checkout tf code in runner environment
       uses: actions/checkout@v3.5.2
