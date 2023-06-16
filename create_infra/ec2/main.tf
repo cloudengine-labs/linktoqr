@@ -13,11 +13,11 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.1"
+      version = "~> 3.27"
     }
   }
 
-  required_version = ">= 0.14.9"
+  required_version = ">= 1.0.0"
 
   backend "remote" {
     hostname     = "app.terraform.io"
