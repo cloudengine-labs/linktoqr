@@ -1,12 +1,12 @@
 name: Terraform AWS Workflow
 
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       tfpath:
         description: 'TF File Path'     
         required: true
-        # default: 'create_infra/ec2'
+        default: 'create_infra/ec2'
         type: string
 
 jobs:
