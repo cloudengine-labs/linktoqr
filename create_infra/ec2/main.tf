@@ -13,7 +13,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.27"
+      version = "~> 4.1"
     }
   }
 
@@ -32,7 +32,7 @@ terraform {
 # Provider block declares the provider on which the infra will be created
 # For AWS, one way of doing the cred authentication is to install AWS CLI and configure it to add access_key_id and secret_access_key
 provider "aws" {
-  # profile = "default"
+  profile = "default"
   region  = var.region
 }
 
