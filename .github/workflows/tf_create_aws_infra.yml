@@ -5,8 +5,8 @@ on:
     inputs:
       tfpath:
         description: 'TF File Path'     
-        required: false
-        default: 'create_infra/ec2'
+        required: true
+        # default: 'create_infra/ec2'
         type: string
 
 jobs:

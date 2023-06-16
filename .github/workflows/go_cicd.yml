@@ -57,5 +57,5 @@ jobs:
     name: Go CD Job
     uses: ./.github/workflows/tf_create_aws_infra.yml
     with:
-      tfpath: "create_infra/ec2"
+      tfpath: create_infra/ec2
 
