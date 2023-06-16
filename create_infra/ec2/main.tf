@@ -2,7 +2,7 @@
 # Common values used across the terraform code can be added as variables
 # We can override the values using .tfvars files while running terraform plan/apply
 variable "region" {
-default = "us-west-2"
+  default = "us-west-2"
 }
 
 # Terraform Required provider Block
@@ -18,6 +18,15 @@ terraform {
   }
 
   required_version = ">= 0.14.9"
+
+  backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "gsaravanan-tf"
+
+    workspaces {
+      name = "example-workspace"
+    }
+  }
 }
 
 # Provider block declares the provider on which the infra will be created

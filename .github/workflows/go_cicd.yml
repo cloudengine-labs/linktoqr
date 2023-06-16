@@ -76,6 +76,8 @@ jobs:
         aws-region: us-west-2
     - name: Setup Terraform CLI
       uses: hashicorp/setup-terraform@v2.0.2
+      with:
+        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
   
     - name: Terraform init and validate
       run: |
