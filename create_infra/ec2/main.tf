@@ -31,8 +31,8 @@ provider "aws" {
 # In this section, we will add the resources that we will be adding and managing in Cloud infra
 # 
 resource "aws_instance" "app_server" {
-  # AMIs with hvm Ubuntu 22.04 -> ami-0c79a55dda52434da, 20.04 -> ami-0dca369228f3b2ce7. Amz Linux ami-03af2177edf15f440
-  ami           = "ami-0c79a55dda52434da"
+  # x86 AMIs with hvm Ubuntu 22.04 -> ami-03f65b8614a860c29, 20.04 -> ami-0c65adc9a5c1b5d7c. Amz Linux ami-07dfed28fcf95241c
+  ami           = "ami-03f65b8614a860c29"
   instance_type = "t2.micro"
 
   # We can use the provisioners like user_data to run scripts that will be executed when the instance is getting created.
