@@ -47,10 +47,12 @@ jobs:
       uses: docker/build-push-action@v4.1.1
       with:
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/linktoqr:latest, ${{ steps.meta.outputs.tags }}
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/linktoqr:latest 
+        # tags: ${{ secrets.DOCKERHUB_USERNAME }}/linktoqr:latest, ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
 
 # TODO: Tests 
-#  go_cd_job:
-#    name: Go CD Job
-#    runs-on: ubuntu-latest
+  go_cd_job:
+    name: Go CD Job
+    uses: github.com/chefgs/terraform_repo/.github/workflows/tf_code_validation_aws.yml@main
+    
