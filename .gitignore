@@ -20,3 +20,6 @@ linktoqr
 
 # Go workspace file
 go.work
+
+# Terraform files
+.terraform
