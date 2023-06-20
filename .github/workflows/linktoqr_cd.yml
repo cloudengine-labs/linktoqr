@@ -29,7 +29,6 @@ jobs:
     - name: Terraform init and velidate and plan
       run: |
         echo `pwd`
-        echo "tfpath ${{ github.event.inputs.tfpath }}"
         echo "** Running Terraform Init**"
         terraform init
         
@@ -49,12 +48,14 @@ jobs:
     - name: Verify Kubernetes Deployment
       run: |
         echo "** kubectl get deployment **"
-        kubectl get deployment -n ns-linktoqr 
+        kubectl get deployment -n ns_linktoqr 
         
     - name: Expose Kubernetes Deployment
       run: |
-        echo "** kubectl get deployment **"
-        kubectl expose deployment linktoqr -n ns-linktoqr    
+        echo "** kubectl expose deployment **"
+        kubectl expose deployment linktoqr --port=80 --target-port=8000 -n ns_linktoqr
+        sleep 10
+        kubectl get service -n ns_linktoqr -o wide
   
     - name: Terraform Destroy
       run: |
