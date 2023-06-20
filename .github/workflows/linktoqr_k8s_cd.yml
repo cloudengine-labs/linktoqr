@@ -53,12 +53,23 @@ jobs:
         echo "** kubectl get deployment **"
         kubectl get deployment -n $KUBE_NAMESPACE -o wide 
         
-    - name: Expose Kubernetes Deployment
+    - name: Expose Kubernetes Deployment as Service
       run: |
         echo "** kubectl expose deployment **"
         kubectl expose deployment linktoqr --port=80 --target-port=8000 -n $KUBE_NAMESPACE
         sleep 10
         kubectl get service -n $KUBE_NAMESPACE -o wide
+
+    - name: Port-forward the Kubernetes Service
+      run: |
+        echo "** kubectl port-forward **"
+        kubectl port-forward service/linktoqr 1718:1718 -n $KUBE_NAMESPACE &
+
+    - name: Access the QR Converter 
+      run: |        
+        echo "** Access the QR converter portal **"
+        curl http://localhost:1718/?url=test.com&qr=Show+QR
+        kill %1
   
     - name: Terraform Destroy
       run: |

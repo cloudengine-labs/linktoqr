@@ -23,9 +23,9 @@ jobs:
     name: CD in K8s
     uses: ./.github/workflows/linktoqr_k8s_cd.yml
   
-  go_aws_cd_job:
-    needs: go_ci_job
-    name: CD in AWS
-    uses: ./.github/workflows/linktoqr_aws_cd.yml
-    secrets:
-      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+  # go_aws_cd_job:
+  #   needs: go_ci_job
+  #   name: CD in AWS
+  #   uses: ./.github/workflows/linktoqr_aws_cd.yml
+  #   secrets:
+  #     TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
