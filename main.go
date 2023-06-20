@@ -3,54 +3,19 @@ package main
 import (
 	"flag"
 	"fmt"
-	"html/template"
 	"log"
 	"net/http"
 )
 
 var addr = flag.String("addr", ":1718", "http service address") // Q=17, R=18
 
-var templ = template.Must(template.New("qr").Parse(templateStr))
-
 func main() {
 	fmt.Println("\nURL to QR Converter Running.. Now access http://localhost:1718/")
 
 	flag.Parse()
-	http.Handle("/", http.HandlerFunc(QR))
+	http.Handle("/", http.HandlerFunc(RenderHtmlPage))
 	err := http.ListenAndServe(*addr, nil)
 	if err != nil {
 		log.Fatal("ListenAndServe:", err)
 	}
 }
-
-func QR(w http.ResponseWriter, req *http.Request) {
-	fmt.Println("\nQR Converter Accessed.. ")
-	err := templ.Execute(w, req.FormValue("url"))
-	if err != nil {
-		// Handle the error if any and return
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-}
-
-const templateStr = `
-<html>
-<head>
-<title>Link to QR Generator</title>
-</head>
-<body>
-<h2>Convert URL to QR</h2>
-{{if .}}
-<img src="http://chart.apis.google.com/chart?chs=300x300&cht=qr&choe=UTF-8&chl={{.}}" />
-<br>
-{{.}}
-<br>
-<br>
-{{end}}
-<form action="/" name=f method="GET">
-    <input maxLength=1024 size=70 name=url value="" title="Text to QR Encode">
-    <input type=submit value="Show QR" name=qr>
-</form>
-</body>
-</html>
-`
