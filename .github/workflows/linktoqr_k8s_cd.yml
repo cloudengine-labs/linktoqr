@@ -56,7 +56,7 @@ jobs:
     - name: Expose Kubernetes Deployment as Service
       run: |
         echo "** kubectl expose deployment **"
-        kubectl expose deployment linktoqr --port=80 --target-port=8000 -n $KUBE_NAMESPACE
+        kubectl expose deployment linktoqr --port=1718 --target-port=1718 -n $KUBE_NAMESPACE
         sleep 10
         kubectl get service -n $KUBE_NAMESPACE -o wide
 
