@@ -54,6 +54,7 @@ jobs:
 # TODO: Tests 
 
   go_cd_job:
+    needs: go_ci_job
     name: Go k8s CD Job
     uses: ./.github/workflows/linktoqr_cd.yml
   
