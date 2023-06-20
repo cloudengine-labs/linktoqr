@@ -13,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
-    if:  ${{ inputs.tfpath }} 
     steps:
     - name: Checkout Code
       uses: actions/checkout@v2.5.0
@@ -39,7 +38,7 @@ jobs:
         
         echo "** Running Terraform Plan**"
         terraform plan
-      working-directory: ${{ github.event.inputs.tfpath }}
+      working-directory: create_infra/kubernetes
 
     - name: Terraform Apply
       run: |
@@ -56,4 +55,4 @@ jobs:
       run: |
         echo "** Running Terraform Destroy**"
         terraform plan -destroy
-      working-directory: ${{ github.event.inputs.tfpath }}
+      working-directory: create_infra/kubernetes
