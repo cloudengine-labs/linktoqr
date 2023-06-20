@@ -6,6 +6,9 @@ name: Link-to-QR Kubernetes CD
 on:
   workflow_call:
 
+env:
+  KUBE_NAMESPACE: ns-linktoqr
+
 jobs: 
   go_k8s_cd_job:
     name: CD in Kubernetes
@@ -48,14 +51,14 @@ jobs:
     - name: Verify Kubernetes Deployment
       run: |
         echo "** kubectl get deployment **"
-        kubectl get deployment -n ns_linktoqr 
+        kubectl get deployment -n $KUBE_NAMESPACE -o wide 
         
     - name: Expose Kubernetes Deployment
       run: |
         echo "** kubectl expose deployment **"
-        kubectl expose deployment linktoqr --port=80 --target-port=8000 -n ns_linktoqr
+        kubectl expose deployment linktoqr --port=80 --target-port=8000 -n $KUBE_NAMESPACE
         sleep 10
-        kubectl get service -n ns_linktoqr -o wide
+        kubectl get service -n $KUBE_NAMESPACE -o wide
   
     - name: Terraform Destroy
       run: |

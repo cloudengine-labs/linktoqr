@@ -4,11 +4,11 @@ resource "kubernetes_namespace" "ns_linktoqr" {
   }
 }
 
-resource "kubernetes_deployment" "linktoqr" {
+resource "kubernetes_deployment" "linktoqr_deployment" {
   metadata {
-    name = "terraform-example"
+    name = "linktoqr"
     labels = {
-      tier = "frontend"
+      tier = "backend"
     }
     namespace = var.kubernetes_namespace_value
   }
@@ -18,21 +18,21 @@ resource "kubernetes_deployment" "linktoqr" {
 
     selector {
       match_labels = {
-        tier = "frontend"
+        tier = "backend"
       }
     }
 
     template {
       metadata {
         labels = {
-          tier = "frontend"
+          tier = "backend"
         }
       }
 
       spec {
         container {
-          image = "nginx:latest"
-          name  = "nginx"
+          image = "gsdockit/linktoqr:latest"
+          name  = "linktoqr"
 
           resources {
             limits = {

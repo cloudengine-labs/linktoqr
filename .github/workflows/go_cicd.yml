@@ -13,91 +13,14 @@ jobs:
 
   go_ci_job:
     name: Go CI Job
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
+    uses: ./.github/workflows/linktoqr_ci.yml
 
-    - name: Set up Go
-      uses: actions/setup-go@v3
-      with:
-        go-version: 1.19
-
-    - name: Golang CI code Lint
-      uses: golangci/golangci-lint-action@v3
-      
-    - name: Run Go Build
-      run: go build -v ./...
-
-    - name: Setup docker
-      uses: docker/setup-buildx-action@v2.7.0
-      
-    - name: Login to Docker Hub
-      uses: docker/login-action@v2
-      with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
-        
-    - name: Extract metadata (tags, labels) for Docker
-      id: meta
-      uses: docker/metadata-action@v4.6.0
-      with:
-          images: ${{ secrets.DOCKERHUB_USERNAME }}/linktoqr
-  
-    - name: Docker Build and Push
-      uses: docker/build-push-action@v4.1.1
-      with:
-        push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/linktoqr:latest 
-        # tags: ${{ secrets.DOCKERHUB_USERNAME }}/linktoqr:latest, ${{ steps.meta.outputs.tags }}
-        labels: ${{ steps.meta.outputs.labels }}
-
-# TODO: Tests 
-
-  go_cd_job:
+  go_k8s_cd_job:
     needs: go_ci_job
-    name: Go k8s CD Job
-    uses: ./.github/workflows/linktoqr_cd.yml
+    name: CD in K8s
+    uses: ./.github/workflows/linktoqr_k8s_cd.yml
   
   go_aws_cd_job:
     needs: go_ci_job
     name: CD in AWS
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout tf code in runner environment
-      uses: actions/checkout@v3.5.2
-
-    # Configure Terraform cloud API token, since we are using Remote backend option of Terraform cloud in AWS code
-    - name: Setup Terraform CLI
-      uses: hashicorp/setup-terraform@v2.0.2
-      with:
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-
-    # Add the AWS Creds as ENV variable in TF Cloud workspace, since the tf run happens in TF Cloud environment
-
-    # Call rest of the Terraform commands
-    - name: Terraform init and validate
-      run: |
-        echo `pwd`
-        echo "** Running Terraform Init**"
-        terraform init
-          
-        echo "** Running Terraform Validate**"
-        terraform validate
-      working-directory: create_infra/ec2
-    - name: Terraform plan and apply
-      run: |
-        echo `pwd`   
-        echo "** Running Terraform Plan**"
-        terraform plan
-          
-        echo "** Running Terraform Apply**"
-        terraform apply -auto-approve
-      working-directory: create_infra/ec2
-  
-    - name: Terraform Destroy
-      run: |
-        echo "** Running Terraform Destroy**"
-        terraform destroy -auto-approve
-      working-directory: create_infra/ec2
-  
+    uses: ./.github/workflows/linktoqr_aws_cd.yml
