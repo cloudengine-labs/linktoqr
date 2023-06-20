@@ -5,7 +5,11 @@ name: Link-to-QR CI
 
 on:
   workflow_call:
-
+    secrets:
+        DOCKERHUB_USERNAME:
+            required: true
+        DOCKERHUB_TOKEN:
+            required: true
 jobs:
 
   go_ci_job:
