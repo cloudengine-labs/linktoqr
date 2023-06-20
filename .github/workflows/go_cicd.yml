@@ -60,7 +60,7 @@ jobs:
   
   go_aws_cd_job:
     needs: go_ci_job
-    name: Terraform Validation and Build
+    name: CD in AWS
     runs-on: ubuntu-latest
 
     steps:
