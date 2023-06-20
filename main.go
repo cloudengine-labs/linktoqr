@@ -16,14 +16,14 @@ func main() {
 	fmt.Println("\nURL to QR Converter Running.. Now access http://localhost:1718/")
 
 	flag.Parse()
-	http.Handle("/", http.HandlerFunc(QR))
+	http.Handle("/", http.HandlerFunc(render_qr_html_template))
 	err := http.ListenAndServe(*addr, nil)
 	if err != nil {
 		log.Fatal("ListenAndServe:", err)
 	}
 }
 
-func QR(w http.ResponseWriter, req *http.Request) {
+func render_qr_html_template(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("\nQR Converter Accessed.. ")
 	err := templ.Execute(w, req.FormValue("url"))
 	if err != nil {
