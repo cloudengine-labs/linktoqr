@@ -27,3 +27,5 @@ jobs:
     needs: go_ci_job
     name: CD in AWS
     uses: ./.github/workflows/linktoqr_aws_cd.yml
+    secrets:
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}

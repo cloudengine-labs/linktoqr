@@ -5,6 +5,9 @@ name: Link-to-QR AWS CD
 
 on:
   workflow_call:
+    secrets:
+        TF_API_TOKEN:
+            required: true
 
 jobs: 
   go_aws_cd_job:
