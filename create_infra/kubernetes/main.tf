@@ -1,10 +1,10 @@
-resource "kubernetes_namespace" "example" {
+resource "kubernetes_namespace" "ns_linktoqr" {
   metadata {
     name = var.kubernetes_namespace_value
   }
 }
 
-resource "kubernetes_deployment" "example" {
+resource "kubernetes_deployment" "linktoqr" {
   metadata {
     name = "terraform-example"
     labels = {
