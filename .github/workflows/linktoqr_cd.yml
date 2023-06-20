@@ -44,12 +44,17 @@ jobs:
       run: |
         echo "** Running Terraform Apply**"
         terraform apply -auto-approve
-      working-directory: ${{ github.event.inputs.tfpath }}
+      working-directory: create_infra/kubernetes
 
     - name: Verify Kubernetes Deployment
       run: |
         echo "** kubectl get deployment **"
-        kubectl get deployment -n ns-created-by-tf
+        kubectl get deployment -n ns-linktoqr 
+        
+    - name: Expose Kubernetes Deployment
+      run: |
+        echo "** kubectl get deployment **"
+        kubectl expose deployment linktoqr -n ns-linktoqr    
   
     - name: Terraform Destroy
       run: |
