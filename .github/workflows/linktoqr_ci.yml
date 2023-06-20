@@ -24,8 +24,11 @@ jobs:
       with:
         go-version: 1.19
 
-    - name: Golang CI code Lint
+    - name: Go CI code Lint
       uses: golangci/golangci-lint-action@v3
+
+    - name: Go CI code Unit Test
+      run: go test -v ./...
       
     - name: Run Go Build
       run: go build -v ./...
