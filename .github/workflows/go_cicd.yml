@@ -53,13 +53,11 @@ jobs:
 
 # TODO: Tests 
 
-  # go_cd_job:
-  #   name: Go CD Job
-  #   uses: ./.github/workflows/tf_create_aws_infra.yml
-  #   with:
-  #     tfpath: create_infra/ec2
-
   go_cd_job:
+    name: Go k8s CD Job
+    uses: ./.github/workflows/linktoqr_cd.yml
+  
+  go_aws_cd_job:
     needs: go_ci_job
     name: Terraform Validation and Build
     runs-on: ubuntu-latest
