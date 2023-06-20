@@ -8,7 +8,7 @@ on:
 
 jobs: 
   go_k8s_cd_job:
-    name: Terraform Validation and Build
+    name: CD in Kubernetes
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
