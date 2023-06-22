@@ -4,9 +4,9 @@ FROM golang:alpine
 ENV CGO_ENABLED=0 \
     GOOS=linux
 
-WORKDIR /root/go/src/linktoqr
+WORKDIR $GOPATH/src/linktoqr
 
-COPY . .
+COPY ./*go* .
 
 RUN go build -o /linktoqr 
 
