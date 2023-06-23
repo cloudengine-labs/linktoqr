@@ -5,8 +5,9 @@
 ## ToDo
 - [x] Contenerisation using Dockerfile
 - [x] GitHub workflow for CI
-- [ ] GitHub workflow for CD to deploy in Cloud
-- [ ] Unit Tests
+- [x] Unit Tests
+- [x] GitHub workflow for CD (implemented k8s deployment in minikube)
+
 
 ## Purpose
 Code in this repo will help to generate QR from the given URL.
