@@ -1,5 +1,7 @@
 FROM golang:alpine
 
+LABEL org.opencontainers.image.source=https://github.com/chefgs/linktoqr
+
 # Set necessary environmet variables needed for our image
 ENV CGO_ENABLED=0 \
     GOOS=linux
