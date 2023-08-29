@@ -51,7 +51,7 @@ jobs:
     - name: Docker Build and Push
       uses: docker/build-push-action@v4.1.1
       with:
-        push: true
+        push: ${{ github.event_name != 'pull_request' }}
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/linktoqr:latest 
         # tags: ${{ secrets.DOCKERHUB_USERNAME }}/linktoqr:latest, ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
