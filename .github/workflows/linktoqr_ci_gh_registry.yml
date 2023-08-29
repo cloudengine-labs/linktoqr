@@ -22,6 +22,13 @@ jobs:
   go_ci_job:
     name: Go CI Job
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      # This is used to complete the identity challenge
+      # with sigstore/fulcio when running outside of PRs.
+      id-token: write
+
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
@@ -40,6 +47,14 @@ jobs:
     - name: Run Go Build
       run: go build -v ./...
 
+      # Install the cosign tool except on PR
+      # https://github.com/sigstore/cosign-installer
+    - name: Install cosign
+      if: github.event_name != 'pull_request'
+      uses: sigstore/cosign-installer@v3.1.1
+      with:
+        cosign-release: 'v2.1.1' # Optional
+  
     - name: Setup docker
       uses: docker/setup-buildx-action@v2.7.0
       
