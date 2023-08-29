@@ -7,6 +7,7 @@
 - [x] GitHub workflow for CI
 - [x] Unit Tests
 - [x] GitHub workflow for CD (implemented k8s deployment in minikube)
+- [x] Add GitHub Action container registry upload
 
 
 ## Purpose
