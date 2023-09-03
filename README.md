@@ -9,7 +9,6 @@
 - [x] GitHub workflow for CD (implemented k8s deployment in minikube)
 - [x] Add GitHub Action container registry upload
 
-
 ## Purpose
 Code in this repo will help to generate QR from the given URL.
 
@@ -36,6 +35,13 @@ cd ~/go/bin
 docker run -d -p 1718:1718 gsdockit/linktoqr
 ```
 - Rest of the steps for accessing the QR via browser is same, and can be accessed via `http://localhost:1718`
+
+### Method 3: GitHub package Docker image execution
+- The executable has been built inside a Docker image and is available to pull from Docker hub registry `gsdockit/linktoqr:latest`
+- Run the below command to run the QR converter using docker
+```
+docker run -d -p 1718:1718 ghcr.io/chefgs/linktoqr:latest
+```
 
 ## Access to QR generator portal
 - Once we execute the code, it will run the portal in `localhost` port `1718`
