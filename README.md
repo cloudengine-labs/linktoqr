@@ -12,6 +12,17 @@
 ## Purpose
 Code in this repo will help to generate QR from the given URL.
 
+## Read before you start contributing to this repo
+- Read [Contribution Guidelines](./CONTRIBUTING.md) before contributing to this repository!
+
+- Read GitHub [Code Of Conduct guidelines](./CODE_OF_CONDUCT.md)before contributing to this repository!
+
+- Feel free to pick up any of the open [Issues](https://github.com/chefgs/linktoqr/issues) or create new issue using the [template](https://github.com/chefgs/linktoqr/issues/new/choose)!
+
+- This repo also has GitHub action [Terraform AWS workflow](https://github.com/chefgs/terraform_repo/actions/workflows/tf_code_validation.yml) to check the Terraform AWS resource code is valid and works fine. Please utilize it for checking-in the code you're pushing passes the check creating. All you've to do is,
+  - Open Workflow in "Actions" Tab
+  - Check if the workflow is passing or not. Fix the issue in case of failure.
+
 ## Installation methods
 ### Method 1: Install from the github path
 - Run the command below to install the executable
