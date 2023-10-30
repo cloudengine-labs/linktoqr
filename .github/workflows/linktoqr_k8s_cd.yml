@@ -8,6 +8,7 @@ on:
 
 env:
   KUBE_NAMESPACE: ns-linktoqr
+  LISTEN_PORT: 1718
 
 jobs: 
   go_k8s_cd_job:
@@ -56,19 +57,19 @@ jobs:
     - name: Expose Kubernetes Deployment as Service
       run: |
         echo "** kubectl expose deployment **"
-        kubectl expose deployment linktoqr --port=1718 --target-port=1718 -n $KUBE_NAMESPACE
+        kubectl expose deployment linktoqr --port=$LISTEN_PORT --target-port=$LISTEN_PORT -n $KUBE_NAMESPACE
         sleep 10
         kubectl get service -n $KUBE_NAMESPACE -o wide
 
     - name: Port-forward the Kubernetes Service
       run: |
         echo "** kubectl port-forward **"
-        kubectl port-forward service/linktoqr 1718:1718 -n $KUBE_NAMESPACE &
+        kubectl port-forward service/linktoqr $LISTEN_PORT:$LISTEN_PORT -n $KUBE_NAMESPACE &
 
     - name: Access the QR Converter 
       run: |        
         echo "** Access the QR converter portal **"
-        curl http://localhost:1718/?url=test.com&qr=Show+QR
+        curl http://localhost:$LISTEN_PORT/?url=test.com&qr=Show+QR
   
     - name: Terraform Destroy
       run: |
