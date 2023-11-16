@@ -6,8 +6,7 @@ LABEL org.opencontainers.image.licenses=MIT
 
 # Set necessary environmet variables needed for our image
 ENV CGO_ENABLED=0 \
-    GOOS=linux \
-    GOOS=darwin
+    GOOS=linux
 
 WORKDIR $GOPATH/src/linktoqr
 
