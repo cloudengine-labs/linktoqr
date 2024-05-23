@@ -26,7 +26,7 @@ const templateStr = `
 <body>
 <h2>Convert URL to QR</h2>
 {{if .}}
-<img src="http://chart.apis.google.com/chart?chs=300x300&cht=qr&choe=UTF-8&chl={{.}}" />
+<img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&choe=UTF-8&chl={{.}}" />
 <br>
 {{.}}
 <br>

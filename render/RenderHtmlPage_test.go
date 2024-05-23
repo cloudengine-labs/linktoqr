@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/chefgs/linktoqr/render"
 )
 
 // http://localhost:1718/?url=test.com&qr=Show+QR
@@ -14,7 +16,7 @@ func TestRenderHtmlPage(t *testing.T) {
 		t.Fatal(err)
 	}
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(render.RenderHtmlPage())
+	handler := http.HandlerFunc(render.RenderHtmlPage)
 	handler.ServeHTTP(rr, req)
 	if status := rr.Code; status != http.StatusOK {
 		t.Errorf("RenderHtmlPage returned wrong status code: got %v want %v",
@@ -28,7 +30,7 @@ func TestRenderHtmlPage(t *testing.T) {
 <body>
 <h2>Convert URL to QR</h2>
 
-<img src="http://chart.apis.google.com/chart?chs=300x300&cht=qr&choe=UTF-8&chl=test.com" />
+<img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&choe=UTF-8&chl=test.com" />
 <br>
 test.com
 <br>
