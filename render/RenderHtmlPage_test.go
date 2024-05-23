@@ -1,5 +1,5 @@
 // Golang REST API unit testing program
-package main
+package render_test
 
 import (
 	"net/http"
@@ -14,7 +14,7 @@ func TestRenderHtmlPage(t *testing.T) {
 		t.Fatal(err)
 	}
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(RenderHtmlPage)
+	handler := http.HandlerFunc(render.RenderHtmlPage())
 	handler.ServeHTTP(rr, req)
 	if status := rr.Code; status != http.StatusOK {
 		t.Errorf("RenderHtmlPage returned wrong status code: got %v want %v",
