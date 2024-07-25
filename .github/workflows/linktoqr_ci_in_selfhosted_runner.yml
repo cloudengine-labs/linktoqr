@@ -1,20 +1,16 @@
 # This workflow will build a golang project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
 
-name: Link-to-QR CI
+name: Selfhosted Runner Link-to-QR CI
 
 on:
-  workflow_call:
-    secrets:
-        DOCKERHUB_USERNAME:
-            required: true
-        DOCKERHUB_TOKEN:
-            required: true
+  workflow_dispatch:
+
 jobs:
 
   go_ci_job:
     name: Go CI Job
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3

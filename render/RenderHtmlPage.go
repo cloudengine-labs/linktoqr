@@ -1,4 +1,4 @@
-package main
+package render
 
 import (
 	"fmt"
@@ -6,11 +6,11 @@ import (
 	"net/http"
 )
 
-var templ = template.Must(template.New("qr").Parse(templateStr))
+var temp = template.Must(template.New("qr").Parse(templateStr))
 
 func RenderHtmlPage(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("\nQR Converter Page Accessed.. ")
-	err := templ.Execute(w, req.FormValue("url"))
+	err := temp.Execute(w, req.FormValue("url"))
 	if err != nil {
 		// Handle the error if any and return
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -26,7 +26,7 @@ const templateStr = `
 <body>
 <h2>Convert URL to QR</h2>
 {{if .}}
-<img src="http://chart.apis.google.com/chart?chs=300x300&cht=qr&choe=UTF-8&chl={{.}}" />
+<img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&choe=UTF-8&chl={{.}}" />
 <br>
 {{.}}
 <br>
