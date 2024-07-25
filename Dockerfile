@@ -9,7 +9,9 @@ LABEL org.opencontainers.image.licenses=MIT
 # Set necessary environment variables needed for our image
 ENV CGO_ENABLED=0 \
     GOOS=linux \
+    GOOS=darwin \
     GO111MODULE=on
+
 
 # Move to working directory /linktoqr
 WORKDIR /linktoqr
