@@ -4,10 +4,11 @@
 name: Link-to-QR CICD 
 
 on:
-  push:
-    branches: [ "**" ]
-  pull_request:
+   workflow_dispatch:
+   push:
     branches: [ "main" ]
+#  pull_request:
+#    branches: [ "main" ]
 
 jobs:
 
